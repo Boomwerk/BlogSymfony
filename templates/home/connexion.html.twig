@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}connexion{% endblock %}
+
+{% block body %}
+
+<h1>connexion BoomBlog !</h1>
+
+<p>Bienvenue sur boomBlog, le blog explosive , réactive sur le développement informatique !</p>
+
+{% if errors %}
+
+    <h3 style="background:red; color:white"> {{errors.messageKey | trans(errors.messageData, 'security')}} </h3>
+
+{% endif %}
+
+<form action="{{ path('login') }}" method="post">
+    <label for="username">Email:</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="_password"/>
+
+    {# If you want to control the URL the user is redirected to on success
+    <input type="hidden" name="_target_path" value="/account"/> #}
+
+    <button type="submit">login</button>
+</form>
+
+
+{% endblock %}

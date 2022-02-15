@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+<h1>Inscription BoomBlog !</h1>
+
+<p>Bienvenue sur boomBlog, le blog explosive , réactive sur le développement informatique !</p>
+
+{% for message in app.flashes('success') %}
+    <h3 style="background:green; color:white"> {{ message }} </h3>
+
+{% endfor %}
+
+
+
+
+{{ form(register) }}
+
+{% endblock %}
