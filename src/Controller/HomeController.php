@@ -58,4 +58,12 @@ class HomeController extends AbstractController
             'errors' => $error
         ]);
     }
+
+    #[Route('/logout', name: 'logout')]
+    public function logout(){
+
+        return $this->redirectToRoute('home');
+    }
+
+   
 }
