@@ -26,12 +26,21 @@
         </div>
         <div class="right">
             <h1>mes Articles</h1>
+            {% if articles %}
+                <ul> 
+                    {% for article in articles %}
+                            
+                        <li> {{article.titleArticle}} </li>
+                        
 
-            <ul>
-                <li> password_hash</li>
-                <li>veilles technologique</li>
-
-            </ul>
+                
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h3>Vous N'avez pas creer d'articles</h3>
+           
+            
+             {% endif %}
         
         </div>
         {% endif %}

@@ -2,30 +2,30 @@
 
 namespace App\Form;
 
-use App\Entity\Users;
+use App\Entity\Articles;
+
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class SettingInfoType extends AbstractType
+class ArticlesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('pseudo', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('modifier', SubmitType::class)
-            
+            ->add('titleArticle', TextType::class)
+            ->add('textArticle', TextareaType::class)
+            ->add('creer' , SubmitType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        //     $resolver->setDefaults([
-        //         'data_class' => Users::class,
-        //     ]);
+        $resolver->setDefaults([
+            'data_class' => Articles::class,
+        ]);
     }
 }

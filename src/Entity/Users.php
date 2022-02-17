@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UsersRepository;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -56,6 +58,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type:"json")]
     private $roles = [];
+
+    #[ORM\OneToMany(mappedBy: 'Users', targetEntity: Articles::class)]
+    private $Articles;
+
+    public function __construct()
+    {
+        $this->Articles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -151,6 +161,36 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUrlImg(string $url_img): self
     {
         $this->url_img = $url_img;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Articles[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->Articles;
+    }
+
+    public function addArticle(Articles $article): self
+    {
+        if (!$this->Articles->contains($article)) {
+            $this->Articles[] = $article;
+            $article->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Articles $article): self
+    {
+        if ($this->Articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getUsers() === $this) {
+                $article->setUsers(null);
+            }
+        }
 
         return $this;
     }

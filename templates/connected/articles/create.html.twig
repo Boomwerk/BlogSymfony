@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %} <link rel="stylesheet" href="/css/create.css">{% endblock %}
+
+{% block title %}Creer Un Article{% endblock %}
+
+{% block body %}
+ 
+    
+    <h1>Creer un article</h1>
+
+
+    {{ form(formArticle) }}
+
+{% endblock %}

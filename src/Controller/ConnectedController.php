@@ -6,7 +6,6 @@ use App\Entity\Users;
 use App\Form\ImageType;
 use App\Form\SettingInfoType;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,7 +15,7 @@ class ConnectedController extends AbstractController
 {
 
     #[Route('/check', name: 'check')]
-    public function check()
+    public function check():Response
     {
 
         if ($this->getUser()->getRoles()[0] === "ROLE_USER") {
@@ -27,11 +26,26 @@ class ConnectedController extends AbstractController
     }
 
 
+    #[Route('/profile/{id}', name: 'profile')]
+    public function index(int $id = null, ManagerRegistry $doctrine): Response
+    {
+
+        $userUrl = $doctrine->getRepository(Users::class)->find($id);
+        $articles = $userUrl->getArticles()->toArray();
+        
+        
+        return $this->render('connected/index.html.twig', [
+            "userUrl" => $userUrl,
+            "idParameters" => $id,
+            "articles" => $articles
+        ]);
+    }
    
     #[Route('/setting', name: 'setting')]
-    public function setting(Request $request, ManagerRegistry $doctrine): Response
+    public function setting(): Response
     {
         $user = $this->getUser();
+        
         $formImg = $this->createForm(ImageType::class, $user, ["action" => $this->generateUrl('editImg')]);
         $formInfo = $this->createForm(SettingInfoType::class, $user, ["action" => $this->generateUrl('editInfo')]);
 
@@ -43,17 +57,8 @@ class ConnectedController extends AbstractController
         ]);
     } 
     
-    
-    #[Route('/profile/{id}', name: 'profile')]
-    public function index(int $id = null, ManagerRegistry $doctrine): Response
-    {
 
-        $userUrl = $doctrine->getRepository(Users::class)->find($id);
-        
-        return $this->render('connected/index.html.twig', [
-            "userUrl" => $userUrl,
-            "idParameters" => $id
-        ]);
-    }
+    
+    
 
 }

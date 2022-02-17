@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %} <link rel="stylesheet" href="/css/showArticles.css">{% endblock %}
+
+{% block title %}Les derniers Articles{% endblock %}
+
+{% block body %}
+ 
+    
+    <h1>Derniers articles</h1>
+
+ <div class="main">
+    {% if articles %}
+
+        {% for article in articles %}
+          
+           
+            <div class="card">
+
+
+                <h2>{{article.titleArticle}}</h2>
+                <p>rediger par {{article.users.pseudo}}</p> 
+
+               
+     
+
+            
+            </div>
+
+        {% endfor %}
+    {% else %}
+        <h2>pas d'articles pour l'instant</h2>
+    {% endif %}
+</div> 
+{% endblock %}

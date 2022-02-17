@@ -1,0 +1,17 @@
+.main{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.card{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 6px 7px 9px black;
+    margin-top: 2%;
+    padding: 2% 0px;
+}

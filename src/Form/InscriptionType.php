@@ -10,8 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\EqualTo;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class InscriptionType extends AbstractType
 {
@@ -20,26 +18,8 @@ class InscriptionType extends AbstractType
         $builder
             ->add('pseudo', TextType::class)
             ->add('email', EmailType::class)
-            ->add('password', PasswordType::class, [
-                "constraints" => [
-                    new EqualTo([
-                        "propertyPath"=>"confirmPassword",
-                        "message" => "les mots de passes ne sont pas identiques"
-                    ]),
-                    new NotBlank()
-
-                ]
-            ])
-            ->add('confirmPassword', PasswordType::class, [
-                "constraints" => [
-                    new EqualTo([
-                        "propertyPath"=>"password",
-                        "message" => "les mots de passes ne sont pas identiques"
-                    ]),
-                    new NotBlank()
-
-                ]
-            ])
+            ->add('password', PasswordType::class)
+            ->add('confirmPassword', PasswordType::class)
             ->add('inscription', SubmitType::class)
             
         ;
