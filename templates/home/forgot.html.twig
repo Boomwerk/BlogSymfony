@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    <h1>Mot de passe oublier</h1>
+
+
+
+    {% for message in app.flashes('success') %}
+        <h3 style="background:green; color:white"> {{ message }} </h3>
+
+    {% endfor %}
+
+    {% if step == 1 %}
+    
+         {{ form(forgot) }}
+
+    {# {% else if step == 2 %} #}
+        
+    
+    {% endif %}
+
+   
+
+
+
+{% endblock %}

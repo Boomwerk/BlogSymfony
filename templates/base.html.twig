@@ -34,9 +34,9 @@
             <a href="{{ path('profile',{ id: app.user.id}) }}">BoomBlog</a>
 
             <div class="menu">
-            <a href="{{ path('articles')}}">Articles</a>
-                <a href="{{ path('profile',{ id: app.user.id} ) }}">{{app.user.pseudo}}</a>
+                <a href="{{ path('articles')}}">Actualités Article</a>
                 <a href="{{ path('createArticle')}}">Creer Un Article</a>
+                <a href="{{ path('profile',{ id: app.user.id} ) }}">{{app.user.pseudo}}</a>
                 <a href="{{ path('setting')}}"> Parametre</a>
                 <a href="{{ path('logout') }}">Deconnexion</a>
             </div>

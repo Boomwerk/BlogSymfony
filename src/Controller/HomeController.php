@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Form\ForgotType;
 use App\Form\InscriptionType;
+use App\Repository\UsersRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,6 +64,43 @@ class HomeController extends AbstractController
     public function logout(){
 
         return $this->redirectToRoute('home');
+    }
+
+    #[Route('/forgot', name:"forgot")]
+    public function forgot(Request $request, UsersRepository $userRepo):Response
+    {
+
+        $step = 1;
+
+        $user = new Users();
+        $form = $this->createForm(ForgotType::class);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            // est-ce que l'email existe?
+            // dd($form->get("email")->getData());
+            if(!empty($userRepo->findBy(["email" => $form->get("email")->getData()]))){
+
+                // envoyer un email
+
+                
+
+            }else{
+                $this->addFlash('error', "l'email n'existe pas");
+
+            }
+        }
+
+
+
+        return $this->render("home/forgot.html.twig",[
+            "forgot" => $form->createView(),
+            "step" =>$step
+        ]);
+
+
     }
 
    
