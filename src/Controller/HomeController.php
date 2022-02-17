@@ -48,7 +48,6 @@ class HomeController extends AbstractController
     public function login(AuthenticationUtils $auth):Response
     {
 
-        dump($auth);
         $error = $auth->getLastAuthenticationError();
 
         $lastUserName = $auth->getLastUsername();

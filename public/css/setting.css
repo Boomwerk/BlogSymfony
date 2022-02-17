@@ -1,0 +1,33 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.editPass{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:90px 0px;
+
+}
+
+.editImg{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.infoImg{
+    width:100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.editImg img{
+    width:200px;
+}

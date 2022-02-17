@@ -1,7 +1,42 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %} <link rel="stylesheet" href="/css/profile.css">{% endblock %}
+
 {% block title %}Hello ConnectedController!{% endblock %}
 
 {% block body %}
- <h1>hello {{pseudo}}</h1>
+ 
+    <div class="container">
+        {% if userUrl == null %}
+            <h1> l'utilisateur n'existe pas !</h1>
+
+        {% else %}
+
+
+        <div class="left">
+
+            <img src="/img/{{userUrl.urlImg}}" alt="Image User Profile">
+
+            <div class="info">
+                <h3>{{userUrl.pseudo}}</h3>
+                <p>Pas De Description</p>
+                <p>{{userUrl.email}}</p>
+            </div>
+        
+        </div>
+        <div class="right">
+            <h1>mes Articles</h1>
+
+            <ul>
+                <li> password_hash</li>
+                <li>veilles technologique</li>
+
+            </ul>
+        
+        </div>
+        {% endif %}
+    
+    </div>
+
+
 {% endblock %}

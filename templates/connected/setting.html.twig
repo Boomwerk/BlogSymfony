@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %} <link rel="stylesheet" href="css/setting.css">{% endblock %}
+
+{% block title %}Parametre de l'utilisateur{% endblock %}
+
+{% block body %}
+ 
+    <div class="container">
+        {% for message in app.flashes('succes') %}
+            <h3 style="background:green; color:white"> {{ message }} </h3>
+
+        {% endfor %}
+
+        
+
+    <div class="main">
+
+        <div class="editInfo">
+            <h1> Modifier les infos</h1>
+            {{ form_errors(formInfo) }}
+            {{ form(formInfo) }}
+        
+        </div>
+
+        <div class="editPass">
+
+            <h1>Modifier le mot de passe </h1>
+        
+            <form action="{{ path('editPassword')}}" method='post'>
+        
+                <input type="password" placeholder="taper l'ancien mot de passe" name="lastPassword">
+                <input type="password" placeholder="nouveau mot de passe" name="newPassword">
+                <input type="password" placeholder="confirmer le mot de passe" name="confirmPassword">
+                <input type="submit">
+
+            </form>
+        </div>
+
+        <div class="editImg">
+            <h1>Modifier la photo de profile</h1>
+
+            <div class="infoImg">
+
+                <img src="img/{{app.user.urlImg}}" alt="">
+
+                {{ form(formImg) }}
+            </div>
+            
+        
+        </div>
+
+    
+    
+    </div>
+       
+        
+    
+    
+    </div>
+
+
+{% endblock %}

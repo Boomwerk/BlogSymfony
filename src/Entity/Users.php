@@ -43,14 +43,13 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         min:8,
         minMessage:'le mot de passe doit faire minimum 8 charactères'
     )]
-    #[Assert\NotBlank]
-    #[Assert\EqualTo(propertyPath: 'confirmPassword', message: 'les mots de passes ne sont pas identiques')]
+ 
+    
     #[ORM\Column(type: 'string', length: 255)]
     private $password;
     
-    #[Assert\EqualTo(propertyPath:'password', message: 'les mots de passes ne sont pas identiques')]
-    #[Assert\NotBlank]
-    public $confirmPassword;
+  
+    private $confirmPassword;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $url_img;
@@ -128,6 +127,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getConfirmPassword(): ?string
+    {
+        return $this->confirmPassword;
+    }
+
+    public function setConfirmPassword(string $confirmPassword): self
+    {
+        $this->confirmPassword = $confirmPassword;
 
         return $this;
     }

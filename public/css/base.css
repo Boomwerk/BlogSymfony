@@ -1,9 +1,11 @@
 html, body{
     margin: 0;
     padding:0;
+    
 }
 
 nav{
+    
     background: #0BA7E9;
     display: flex;
     justify-content: space-between;
@@ -21,7 +23,7 @@ nav a{
 nav .menu {
     display: flex;
     justify-content: space-between;
-    width: 150px;
+    width: 330px;
     padding-right: 2%;
 }
 
